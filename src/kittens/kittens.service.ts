@@ -3,19 +3,32 @@ import { Ikitten } from './kittens.interface';
 
 @Injectable()
 export class KittensService {
-  getKittens(): Ikitten {
-    return { name: 'getKittens' };
-  }
+	getKittens(queries): string {
+		return JSON.stringify({
+			name: 'getKittens',
+			...queries,
+		});
+	}
 
-  postKittens(): Ikitten {
-    return { name: 'postKittens' };
-  }
+	postKittens(body): string {
+		return JSON.stringify({
+			name: 'postKitten',
+			...body,
+		});
+	}
 
-  PutKittens(): Ikitten {
-    return { name: 'putKittens' };
-  }
+	PutKittens(param): string {
+		return JSON.stringify({
+			name: 'putKittens',
+			...param,
+			infoBodyPust: 'jsonEnviadoEnElBody',
+		});
+	}
 
-  deleteKittens(): Ikitten {
-    return { name: 'deleteKittens' };
-  }
+	deleteKittens(id: string): string {
+		return JSON.stringify({
+			name: 'deleteKittens',
+			kittenID: id,
+		});
+	}
 }

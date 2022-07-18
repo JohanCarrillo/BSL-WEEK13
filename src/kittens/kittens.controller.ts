@@ -1,31 +1,41 @@
-import { Controller, Delete, Get, HttpCode, Post, Put } from '@nestjs/common';
+import {
+	Body,
+	Controller,
+	Delete,
+	Get,
+	HttpCode,
+	Param,
+	Post,
+	Put,
+	Query,
+} from '@nestjs/common';
 import { KittensService } from './kittens.service';
 
-@Controller('kittens')
+@Controller()
 export class KittensController {
 	constructor(private readonly kittensService: KittensService) {}
 
-	@Get()
+	@Get('/getKittens')
 	@HttpCode(200)
-	getKittens() {
-		return this.kittensService.getKittens();
+	getKittens(@Query() query): string {
+		return this.kittensService.getKittens(query);
 	}
 
-	@Post()
+	@Post('/postKitten')
 	@HttpCode(201)
-	postKittens() {
-		return this.kittensService.postKittens();
+	postKittens(@Body() body): string {
+		return this.kittensService.postKittens(body);
 	}
 
-	@Put()
+	@Put('/putKitten/:queryEjemploPut')
 	@HttpCode(200)
-	putKittens() {
-		return this.kittensService.PutKittens();
+	putKittens(@Param() param): string {
+		return this.kittensService.PutKittens(param);
 	}
 
-	@Delete()
+	@Delete('/deleteKitten/:id')
 	@HttpCode(200)
-	deleteKittens() {
-		return this.kittensService.deleteKittens();
+	deleteKittens(@Param('id') id): string {
+		return this.kittensService.deleteKittens(id);
 	}
 }
