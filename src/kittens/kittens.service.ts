@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Ikitten } from './kittens.interface';
 
 @Injectable()
 export class KittensService {
